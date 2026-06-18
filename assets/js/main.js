@@ -1,5 +1,5 @@
 /* ============================================================
-   PALMASNET — LP PATO BRANCO
+   PALMASNET — LP PINHÃO
    assets/js/main.js
    ============================================================ */
 
@@ -7,9 +7,9 @@
   'use strict';
 
   /* ── Config ────────────────────────────────────────────── */
-  const WA_NUMBER = '554633135060';
+  const WA_NUMBER = '554692001295';
   const WA_MESSAGE = encodeURIComponent(
-    'Olá! Vim pela página de Pato Branco e quero contratar a internet da Palmasnet. Pode me ajudar?'
+    'Olá! Vim pela página de Pinhão e quero contratar a internet da Palmasnet. Pode me ajudar?'
   );
   const WA_BASE = `https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`;
 
