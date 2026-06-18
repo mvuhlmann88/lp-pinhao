@@ -1,5 +1,5 @@
 /* ============================================================
-   PALMASNET — LP GUARAPUAVA
+   PALMASNET — LP FRANCISCO BELTRÃO
    assets/js/main.js
    ============================================================ */
 
@@ -7,9 +7,9 @@
   'use strict';
 
   /* ── Config ────────────────────────────────────────────── */
-  const WA_NUMBER = '554230358060';
+  const WA_NUMBER = '554632116111';
   const WA_MESSAGE = encodeURIComponent(
-    'Olá! Vim pela página de Guarapuava e quero contratar a internet da Palmasnet. Pode me ajudar?'
+    'Olá! Vim pela página de Francisco Beltrão e quero contratar a internet da Palmasnet. Pode me ajudar?'
   );
   const WA_BASE = `https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`;
 
@@ -77,7 +77,6 @@
   // Envio do formulário
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    // Validação básica
     var ok = true;
     ['lead-nome', 'lead-tel', 'lead-email'].forEach(function (id) {
       var input = document.getElementById(id);
@@ -89,7 +88,6 @@
       }
     });
     if (!ok) return;
-    // Exibe sucesso
     form.style.display = 'none';
     success.style.display = 'block';
   });
@@ -120,12 +118,10 @@
     }, { threshold: 0.12 });
 
     revealEls.forEach(function (el) { observer.observe(el); });
-    /* Fallback — força visibilidade após 800ms */
     setTimeout(function () {
       revealEls.forEach(function (el) { el.classList.add('visible'); });
     }, 800);
   } else {
-    // Fallback: show everything
     revealEls.forEach(function (el) { el.classList.add('visible'); });
   }
 
@@ -135,7 +131,7 @@
       var target = document.querySelector(this.getAttribute('href'));
       if (target) {
         e.preventDefault();
-        var offset = 80; // header height
+        var offset = 80;
         var top = target.getBoundingClientRect().top + window.scrollY - offset;
         window.scrollTo({ top: top, behavior: 'smooth' });
       }
