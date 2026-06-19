@@ -429,6 +429,8 @@ ul {
   border: 2px solid var(--gray-200);
   position: relative;
   transition: box-shadow var(--t), transform var(--t), border-color var(--t);
+  min-width: 0;
+  width: 100%;
 }
 
 
