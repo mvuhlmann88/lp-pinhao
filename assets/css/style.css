@@ -430,6 +430,13 @@ ul {
   transition: box-shadow var(--t), transform var(--t), border-color var(--t);
 }
 
+.plan-badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .plan-card:hover {
   box-shadow: var(--shadow-lg);
   transform: translateY(-4px);
