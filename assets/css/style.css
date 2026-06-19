@@ -438,7 +438,6 @@ ul {
 .plan-card.featured {
   border-color: var(--yellow);
   box-shadow: var(--shadow-md);
-  transform: translateY(-8px);
 }
 
 .plan-card.featured:hover {
