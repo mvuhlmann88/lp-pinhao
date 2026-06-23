@@ -13,6 +13,20 @@
   );
   const WA_BASE = `https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`;
 
+  /* ── Webhook Make ───────────────────────────────────────── */
+  var WEBHOOK_URL = 'https://hook.us2.make.com/hxmu4pgdj3s2sllw16c3fqd32h8jm1j1';
+
+  /* ── Captura UTMs da URL ────────────────────────────────── */
+  var urlParams   = new URLSearchParams(window.location.search);
+  var utmSource   = urlParams.get('utm_source')   || '';
+  var utmMedium   = urlParams.get('utm_medium')   || '';
+  var utmCampaign = urlParams.get('utm_campaign') || '';
+  var utmContent  = urlParams.get('utm_content')  || '';
+  var utmTerm     = urlParams.get('utm_term')     || '';
+
+  /* ── Plano clicado ──────────────────────────────────────── */
+  var planoclicado = '';
+
   /* ── Popup lead ── */
   var overlay  = document.getElementById('lead-overlay');
   var form     = document.getElementById('lead-form');
@@ -36,7 +50,8 @@
     this.value = v;
   });
 
-  function openPopup() {
+  function openPopup(plano) {
+    planoclicado = plano || '';
     overlay.style.display = 'flex';
     document.body.style.overflow = 'hidden';
   }
@@ -48,13 +63,15 @@
     form.style.display = '';
     success.style.display = 'none';
     submit.disabled = true;
+    planoclicado = '';
   }
 
-  // Abre popup em todos os botões CTA
+  // Abre popup em todos os botões CTA — captura data-plano se existir
   document.querySelectorAll('[data-wa]').forEach(function (el) {
     el.addEventListener('click', function (e) {
       e.preventDefault();
-      openPopup();
+      var plano = this.getAttribute('data-plano') || '';
+      openPopup(plano);
     });
   });
 
@@ -88,6 +105,24 @@
       }
     });
     if (!ok) return;
+
+    fetch(WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        nome:         document.getElementById('lead-nome').value.trim(),
+        whatsapp:     document.getElementById('lead-tel').value.trim(),
+        email:        document.getElementById('lead-email').value.trim(),
+        cidade:       'Pinhão',
+        plano:        planoclicado,
+        utm_source:   utmSource,
+        utm_medium:   utmMedium,
+        utm_campaign: utmCampaign,
+        utm_content:  utmContent,
+        utm_term:     utmTerm
+      })
+    });
+
     form.style.display = 'none';
     success.style.display = 'block';
   });
