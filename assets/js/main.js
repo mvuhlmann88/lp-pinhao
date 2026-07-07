@@ -31,7 +31,6 @@
   var overlay  = document.getElementById('lead-overlay');
   var form     = document.getElementById('lead-form');
   var success  = document.getElementById('lead-success');
-  var consent  = document.getElementById('lead-consent');
   var submit   = document.getElementById('lead-submit');
   var closeBtn = document.getElementById('lead-close');
 
@@ -86,16 +85,20 @@
     if (e.key === 'Escape') closePopup();
   });
 
-  // Habilita botão só com checkbox marcado
-  consent.addEventListener('change', function () {
-    submit.disabled = !this.checked;
-  });
+  // Habilita botão só dados preenchidos
+function checkFields() {
+  var nome = document.getElementById('lead-nome').value.trim();
+  var tel  = document.getElementById('lead-tel').value.trim();
+  document.getElementById('lead-submit').disabled = !(nome && tel);
+}
+document.getElementById('lead-nome').addEventListener('input', checkFields);
+document.getElementById('lead-tel').addEventListener('input', checkFields);
 
   // Envio do formulário
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var ok = true;
-    ['lead-nome', 'lead-tel', 'lead-email'].forEach(function (id) {
+    ['lead-nome', 'lead-tel'].forEach(function (id) {
       var input = document.getElementById(id);
       if (!input.value.trim()) {
         input.classList.add('error');
@@ -112,7 +115,6 @@
       body: JSON.stringify({
         nome:         document.getElementById('lead-nome').value.trim(),
         whatsapp:     document.getElementById('lead-tel').value.trim(),
-        email:        document.getElementById('lead-email').value.trim(),
         cidade:       'Pinhão',
         plano:        planoclicado,
         utm_source:   utmSource,

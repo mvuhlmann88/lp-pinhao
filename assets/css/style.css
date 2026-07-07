@@ -1401,3 +1401,9 @@ ul {
   font-size: 15px;
   color: var(--gray-600);
 }
+.lead-consent-text {
+  font-size: 11px;
+  color: #888;
+  margin: 8px 0 12px;
+  line-height: 1.4;
+}
